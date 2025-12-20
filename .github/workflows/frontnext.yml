@@ -4,11 +4,11 @@ on:
   push:
     paths:
       - "frontend/**"
-      - ".github/workflows/frontend.yml"
+      - ".github/workflows/frontnext.yml"
   pull_request:
     paths:
       - "frontend/**"
-      - ".github/workflows/frontend.yml"
+      - ".github/workflows/frontnext.yml"
 
 jobs:
   build-and-test:
@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend
+        working-directory: frontnext
 
     steps:
       - name: Checkout
