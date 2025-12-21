@@ -4,11 +4,11 @@ on:
   push:
     paths:
       - "backend/**"
-      - ".github/workflows/backGO.yml"
+      - ".github/workflows/backGo.yml"
   pull_request:
     paths:
       - "backend/**"
-      - ".github/workflows/backGO.yml"
+      - ".github/workflows/backGo.yml"
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: backGO
+        working-directory: backGo
 
     steps:
       - name: Checkout
