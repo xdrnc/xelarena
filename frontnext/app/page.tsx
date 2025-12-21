@@ -12,6 +12,41 @@ function createEmptyBoard(): Board {
   return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
 }
 
+function checkWinner(board: Board): "R" | "Y" | null {
+  const directions = [
+    [0, 1],   // horizontal
+    [1, 0],   // vertical
+    [1, 1],   // diagonal down-right
+    [1, -1],  // diagonal down-left
+  ];
+
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      const cell = board[row][col];
+      if (!cell) continue;
+
+      for (const [dr, dc] of directions) {
+        let count = 1;
+
+        for (let step = 1; step < 4; step++) {
+          const r = row + dr * step;
+          const c = col + dc * step;
+
+          if (r < 0 || r >= ROWS || c < 0 || c >= COLS) break;
+          if (board[r][c] !== cell) break;
+
+          count++;
+        }
+
+        if (count === 4) return cell;
+      }
+    }
+  }
+
+  return null;
+}
+
+
 export default function Home() {
   const [board, setBoard] = useState<Board>(createEmptyBoard);
   const [currentPlayer, setCurrentPlayer] = useState<"R" | "Y">("R");
@@ -39,16 +74,32 @@ export default function Home() {
   }, []);
 
   function handleColumnClick(col: number) {
+    if(status.includes("wins")) return; // Game over
+
     const newBoard = board.map((row) => [...row]);
+    let placed = false;
+
     for (let row = ROWS - 1; row >= 0; row--) {
       if (!newBoard[row][col]) {
         newBoard[row][col] = currentPlayer;
+        placed = true;
         break;
       }
     }
+
+    if (!placed) return; // Column full
+
     setBoard(newBoard);
+
+    const winner = checkWinner(newBoard);
+    if (winner) {
+      setStatus(`Player ${winner} wins!`);
+      return;
+    }
+
     setCurrentPlayer(currentPlayer === "R" ? "Y" : "R");
 
+    /* alextocheckmore ws send move to server */
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(
         JSON.stringify({
@@ -59,6 +110,7 @@ export default function Home() {
       );
     }
   }
+  
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
