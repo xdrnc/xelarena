@@ -58,8 +58,8 @@ export default function Home() {
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 
-    ws.onopen = () => setStatus("Alextest Simulate Connected to BackGO.");
-    ws.onclose = () => setStatus("Alextest Simulate Disconnected from BackGO.");
+    ws.onopen = () => setStatus("Alextest Simulate Connected to BackGo, records will be saved.");
+    ws.onclose = () => setStatus("Alextest Simulate Disconnected from BackGo, records will not be saved.");
     ws.onerror = () => setStatus("WebSocket error.");
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
