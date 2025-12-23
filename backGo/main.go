@@ -52,6 +52,20 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request) {
 	}
 	defer conn.Close()
 
+	var matchID int
+
+	err = db.QueryRow(context.Background(),
+		"INSERT INTO matches (winner, loser) VALUES ($1, $2) RETURNING id",
+		"", "",
+	).Scan(&matchID)
+
+	if err != nil {
+		fmt.Println("failed to create match:", err)
+		return
+	}
+
+	fmt.Println("New match started with ID:", matchID)
+
 	for {
 		var msg map[string]interface{}
 		if err := conn.ReadJSON(&msg); err != nil {
