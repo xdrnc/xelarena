@@ -113,7 +113,7 @@ export default function Home() {
   
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
+    <main className="flex flex-col items-center justify-center bg-slate-800 text-white py-60">
       <h1 className="text-3xl font-bold mb-4">XEL TicTacDrop</h1>
       <p className="mb-2">{status}</p>
       <p className="mb-4">Current player: {currentPlayer}</p>
