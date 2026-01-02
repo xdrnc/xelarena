@@ -28,7 +28,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-      </body>
+      <p>
+        built by Alexander Alexander
+      </p>
+    </body>
     </html>
   );
 }
