@@ -29,7 +29,13 @@ export default function RootLayout({
       >
         {children}
       <p>
-        built by Alexander Alexander
+        built by: 
+        <a 
+        href="https://www.linkedin.com/in/alexander-alexander-7861102b/"
+        target="_blank"
+        className=" text-[#F5E7C8] drop-shadow-[0_0_6px_rgba(245,231,200,0.6)] hover:text-[#E8D7A8] hover:drop-shadow-[0_0_12px_rgba(245,231,200,0.9)] transition-all blink bg-[#A5EEC8] px-1 rounded-md ml-1"
+        >
+        ALEXANDER</a>
       </p>
     </body>
     </html>
