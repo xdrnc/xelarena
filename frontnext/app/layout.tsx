@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,16 @@ export default function RootLayout({
           <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
 
             {/* Left side — Home link */}
-            <Link href="/" className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100" >
-              XELARENA
+            <Link href="/" className="flex text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100" >
+              <Image src="/favicon.ico"
+                  alt="XELARENA logo"
+                  width={28} 
+                  height={28} 
+                  className="rounded-sm" />
+
+              <span className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                XELARENA
+              </span>
             </Link>
 
             {/* alextodo??? Right side — PayPal Donate Button
