@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+      <header className="w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black">
+          <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
+
+            {/* Left side — Home link */}
+            <Link href="/" className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100" >
+              XELARENA
+            </Link>
+
+            {/* alextodo??? Right side — PayPal Donate Button
+            <form action="https://www.paypal.com/donate" method="post" target="_blank" >
+              <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID" />
+              <button type="submit" className="bg-[#003087] text-white px-4 py-2 rounded-md hover:bg-[#001f5c] transition" >
+                Donate
+              </button>
+            </form>
+            */}
+
+          </div>
+        </header>
+
         {children}
       <p>
         built by: 
